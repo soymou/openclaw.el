@@ -10,7 +10,7 @@
 ;;; Commentary:
 ;; Full Emacs integration for the OpenClaw AI assistant.
 ;;
-;; Connects to a remote (or local) OpenClaw Gateway via `openclaw acp',
+;; Connects to a remote (or local) OpenClaw Gateway via `openclaw acp'`,
 ;; which uses JSON-RPC 2.0 over NDJSON on stdin/stdout.
 ;;
 ;; Quick start:
@@ -89,30 +89,12 @@ Nil means no token is sent."
 ;; Global key prefix
 ;; ---------------------------------------------------------------------------
 
-(defvar openclaw-prefix-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "o") #'openclaw-chat-toggle)
-    (define-key map (kbd "c") #'openclaw-context-add-buffer)
-    (define-key map (kbd "r") #'openclaw-context-add-region)
-    (define-key map (kbd "p") #'openclaw-context-add-project)
-    (define-key map (kbd "s") #'openclaw-sessions-switch)
-    (define-key map (kbd "n") #'openclaw-sessions-new)
-    (define-key map (kbd "k") #'openclaw-process-stop)
-    map)
-  "Prefix keymap for OpenClaw.  Bind it with `openclaw-setup-keys'.")
 
-;;;###autoload
-(defun openclaw-setup-keys ()
-  "Bind the OpenClaw prefix map to \\[openclaw-prefix-map] (C-c o by default)."
-  (interactive)
-  (global-set-key (kbd "C-c o") openclaw-prefix-map)
-  (message "OpenClaw: keys bound to C-c o"))
 
 ;; ---------------------------------------------------------------------------
 ;; Setup wizard
 ;; ---------------------------------------------------------------------------
 
-;;;###autoload
 (defun openclaw-setup ()
   "Interactive setup wizard for OpenClaw connection settings."
   (interactive)

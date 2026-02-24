@@ -98,9 +98,11 @@
       (message "OpenClaw: process killed"))
      (t
       (message "OpenClaw: process event: %s" status))))
+  ;; Reset all state variables on process death.
   (setq openclaw--process nil
         openclaw--initialized nil
-        openclaw--acp-session-id nil)
+        openclaw--acp-session-id nil
+        openclaw--awaiting-response nil) ; <-- The fix
   (ignore proc))
 
 (provide 'openclaw-process)
